@@ -1,0 +1,17 @@
+B /Users/terje.larsen/.opam/system/lib/base
+B /Users/terje.larsen/.opam/system/lib/base/caml
+B /Users/terje.larsen/.opam/system/lib/base/shadow_stdlib
+B /Users/terje.larsen/.opam/system/lib/bytes
+B /Users/terje.larsen/.opam/system/lib/oUnit
+B /Users/terje.larsen/.opam/system/lib/sexplib0
+B /usr/local/lib/ocaml
+B _build/default/.test.eobjs
+S /Users/terje.larsen/.opam/system/lib/base
+S /Users/terje.larsen/.opam/system/lib/base/caml
+S /Users/terje.larsen/.opam/system/lib/base/shadow_stdlib
+S /Users/terje.larsen/.opam/system/lib/bytes
+S /Users/terje.larsen/.opam/system/lib/oUnit
+S /Users/terje.larsen/.opam/system/lib/sexplib0
+S /usr/local/lib/ocaml
+S .
+FLG -w -40

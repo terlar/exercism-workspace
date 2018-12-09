@@ -1,0 +1,15 @@
+*.beam
+*.log
+.nrepl-port
+pytest
+
+.gradle/
+__pycache__/
+_build/
+bower_components/
+build/
+generated-code/
+node_modules/
+output/
+target/
+tmp/

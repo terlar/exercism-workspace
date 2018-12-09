@@ -1,0 +1,35 @@
+-- This file has been generated from package.yaml by hpack version 0.28.2.
+--
+-- see: https://github.com/sol/hpack
+--
+-- hash: e3afabf782022e39dd21d42e0707ddb18dacf083935f2f0ca9e000e2379fc762
+
+name:           collatz-conjecture
+version:        1.2.1.3
+build-type:     Simple
+cabal-version:  >= 1.10
+
+library
+  exposed-modules:
+      CollatzConjecture
+  other-modules:
+      CollatzConjecture_flymake
+      Paths_collatz_conjecture
+  hs-source-dirs:
+      src
+  build-depends:
+      base
+  default-language: Haskell2010
+
+test-suite test
+  type: exitcode-stdio-1.0
+  main-is: Tests.hs
+  other-modules:
+      Paths_collatz_conjecture
+  hs-source-dirs:
+      test
+  build-depends:
+      base
+    , collatz-conjecture
+    , hspec
+  default-language: Haskell2010
