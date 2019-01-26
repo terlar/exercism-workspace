@@ -2,8 +2,11 @@
 *.log
 .nrepl-port
 pytest
+*.cabal
+*_flymake.hs
 
 .gradle/
+.stack-work/
 __pycache__/
 _build/
 bower_components/
