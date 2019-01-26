@@ -2,11 +2,12 @@ module CollatzConjecture (collatz) where
 
 collatz :: Integer -> Maybe Integer
 collatz n | n <= 0     = Nothing
-          | otherwise = Just $ collatz' 0 n
+          | otherwise = Just $ collatzLength n
 
-collatz' :: Integer -> Integer -> Integer
-collatz' len 1 = len
-collatz' len n = collatz' (len + 1) (collatzNext n)
+collatzLength :: Integer -> Integer
+collatzLength n = fromIntegral . length
+                  $ takeWhile (/= 1)
+                  $ iterate collatzNext n
 
 collatzNext :: Integer -> Integer
 collatzNext n | 1 == n     = 1
