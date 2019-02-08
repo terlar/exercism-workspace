@@ -1,9 +1,10 @@
 *.beam
+*.cabal
 *.log
+*_flymake.hs
+.lein-*
 .nrepl-port
 pytest
-*.cabal
-*_flymake.hs
 
 .gradle/
 .stack-work/
