@@ -6,5 +6,7 @@ in mkShell {
   buildInputs = [
     nodejs
     yarn
-  ];
+  ] ++ (with pkgs.nodePackages; [
+    prettier
+  ]);
 }
