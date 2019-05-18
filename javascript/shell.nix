@@ -7,6 +7,7 @@ in mkShell {
     nodePackages.eslint_d
     nodePackages.indium
     nodePackages.javascript-typescript-langserver
+    nodePackages.prettier
     nodejs
   ];
 }
