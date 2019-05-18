@@ -1,47 +1,47 @@
 {
-  "jsRules": {
-    "class-name": true,
-    "comment-format": [
-      true,
-      "check-space"
-    ],
-    "indent": [
-      true,
-      "spaces"
-    ],
-    "no-duplicate-variable": true,
-    "no-eval": true,
-    "no-trailing-whitespace": true,
-    "no-unsafe-finally": true,
-    "one-line": [
-      true,
-      "check-open-brace",
-      "check-whitespace"
-    ],
-    "quotemark": [
-      false,
-      "double"
-    ],
-    "semicolon": [
-      true,
-      "never"
-    ],
-    "triple-equals": [
-      true,
-      "allow-null-check"
-    ],
-    "variable-name": [
-      true,
-      "ban-keywords"
-    ],
-    "whitespace": [
-      true,
-      "check-branch",
-      "check-decl",
-      "check-operator",
-      "check-separator",
-      "check-type"
-    ]
+    "jsRules": {
+        "class-name": true,
+        "comment-format": [
+            true,
+            "check-space"
+        ],
+        "indent": [
+            true,
+            "spaces"
+        ],
+        "no-duplicate-variable": true,
+        "no-eval": true,
+        "no-trailing-whitespace": true,
+        "no-unsafe-finally": true,
+        "one-line": [
+            true,
+            "check-open-brace",
+            "check-whitespace"
+        ],
+        "quotemark": [
+            false,
+            "double"
+        ],
+        "semicolon": [
+            true,
+            "never"
+        ],
+        "triple-equals": [
+            true,
+            "allow-null-check"
+        ],
+        "variable-name": [
+            true,
+            "ban-keywords"
+        ],
+        "whitespace": [
+            true,
+            "check-branch",
+            "check-decl",
+            "check-operator",
+            "check-separator",
+            "check-type"
+        ]
     },
     "rules": {
         "class-name": true,
@@ -111,16 +111,17 @@
         "no-misused-new": true,
         "no-null-keyword": true,
         "no-string-literal": true,
-      "radix": true,
-      "use-isnan": true,
-      "prefer-const": true,
-      "array-type": [true, "array-simple"],
-      "arrow-parens": true,
-      "new-parens": true,
-      "no-consecutive-blank-lines": [true,1],
-      "no-parameter-properties": true,
-      "no-unnecessary-initializer": true,
-      "object-literal-shorthand": true,
-      "object-literal-key-quotes": [true, "as-needed"]
+        "radix": true,
+        "typeof-compare": true,
+        "use-isnan": true,
+        "prefer-const": true,
+        "array-type": [true, "array-simple"],
+        "arrow-parens": true,
+        "new-parens": true,
+        "no-consecutive-blank-lines": [true,1],
+        "no-parameter-properties": true,
+        "no-unnecessary-initializer": true,
+        "object-literal-shorthand": true,
+        "object-literal-key-quotes": [true, "as-needed"]
     }
 }
