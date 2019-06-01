@@ -1,8 +1,10 @@
 type NucleotideComplement = "C" | "G" | "A" | "U"
 
 interface NucleotideComplementDictionary {
-  [key: string]: NucleotideComplement
+  readonly [key: string]: NucleotideComplement
 }
+
+type NucleotidesToRnaReducer = (rna: string, nucleotide: string) => string
 
 const nucleotideComplements: NucleotideComplementDictionary = {
   G: "C",
@@ -11,22 +13,18 @@ const nucleotideComplements: NucleotideComplementDictionary = {
   A: "U"
 }
 
-function lookupNucleotideComplement(nucleotide: string): NucleotideComplement {
-  const complement = nucleotideComplements[nucleotide]
-
-  if (!complement) {
-    throw new Error("Invalid input DNA.")
-  }
-
-  return complement
-}
-
 class Transcriptor {
   toRna(dnaStrand: string): string {
-    return dnaStrand
-      .split("")
-      .map(lookupNucleotideComplement)
-      .join("")
+    const reducer: NucleotidesToRnaReducer = (rna, nucleotide) => {
+      const complement = nucleotideComplements[nucleotide]
+      if (!complement) {
+        throw new TypeError(`Invalid DNA strand: dnaStrand=${dnaStrand}`)
+      }
+
+      return `${rna}${complement}`
+    }
+
+    return dnaStrand.split("").reduce(reducer, "")
   }
 }
 
