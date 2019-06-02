@@ -3,8 +3,10 @@
 [ "${TRACE}" ] && set -o xtrace
 set -o errexit -o nounset
 
+SCRIPT_PATH="$(cd "$(dirname "$0")"; pwd -P)"
+
 main() {
-    node_modules/.bin/jest "$@"
+    "${SCRIPT_PATH}/../node_modules/.bin/jest" --config "${SCRIPT_PATH}/../package.json" "$@"
 }
 
 main "$@"
