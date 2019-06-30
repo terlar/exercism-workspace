@@ -1,4 +1,4 @@
-const COLORS = [
+export const COLORS = [
   "black",
   "brown",
   "red",
@@ -11,8 +11,6 @@ const COLORS = [
   "white"
 ];
 
-function colorCode(color) {
+export function colorCode(color) {
   return COLORS.indexOf(color);
 }
-
-module.exports = { colorCode, COLORS };
