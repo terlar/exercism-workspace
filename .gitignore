@@ -1,10 +1,14 @@
+!.envrc
+
 *.beam
 *.cabal
 *.log
 *_flymake.hs
+.ghc.environment.*
 .lein-*
 .nrepl-port
 pytest
+stack.yaml.lock
 
 .gradle/
 .stack-work/
@@ -12,6 +16,8 @@ __pycache__/
 _build/
 bower_components/
 build/
+dist/
+dist-newstyle/
 generated-code/
 node_modules/
 output/
