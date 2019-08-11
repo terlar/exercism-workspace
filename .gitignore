@@ -7,8 +7,10 @@
 .ghc.environment.*
 .lein-*
 .nrepl-port
+package-lock.json
 pytest
 stack.yaml.lock
+yarn.lock
 
 .gradle/
 .stack-work/
