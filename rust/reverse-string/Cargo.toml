@@ -1,6 +1,9 @@
-[package]
-name = "reverse_string"
-version = "1.0.0"
-authors = ["Peter Goodspeed-Niklaus <peter.r.goodspeedniklaus@gmail.com>"]
-
 [dependencies]
+
+[features]
+grapheme = []
+
+[package]
+edition = "2018"
+name = "reverse_string"
+version = "1.1.0"
