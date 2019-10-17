@@ -1,20 +1,31 @@
 {
   "scripts": {
+    "test:ava": "ts-node --transpile-only node_modules/.bin/ava tests/ava/*.ts",
     "test:jasmine": "ts-node --transpile-only node_modules/.bin/jasmine tests/jasmine/**/*.test.ts",
     "test:jest": "jest --runInBand --testPathPattern tests/jest/.*\\.test.ts",
     "test:mocha": "mocha --reporter spec --require ts-node/register/transpile-only tests/mocha/**/*.test.ts",
+    "test:lab": "ts-node --transpile-only node_modules/.bin/lab tests/lab/*.test.ts",
     "test:tape": "ts-node --transpile-only node_modules/.bin/tape tests/tape/**/*.test.ts"
+  },
+  "ava": {
+    "compileEnhancements": false,
+    "extensions": [
+      "ts"
+    ]
   },
   "jest": {
     "preset": "ts-jest",
     "testEnvironment": "node"
   },
   "devDependencies": {
+    "@hapi/code": "^7.0.0",
+    "@hapi/lab": "^21.0.0",
     "@types/chai": "^4.2.3",
     "@types/jasmine": "^3.4.4",
     "@types/jest": "^24.0.19",
     "@types/mocha": "^5.2.7",
     "@types/tape": "^4.2.33",
+    "ava": "^2.4.0",
     "chai": "^4.2.0",
     "jasmine": "^3.5.0",
     "jest": "^24.9.0",
