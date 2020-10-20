@@ -12,7 +12,8 @@
   "scripts": {
     "test": "tsc --noEmit -p . && jest --no-cache",
     "lint": "tsc --noEmit -p . && tslint \"*.ts?(x)\"",
-    "lintci": "tslint \"*.ts?(x)\" --force"
+    "lintci": "tslint \"*.ts?(x)\" --force",
+    "version": "echo $npm_package_version"
   },
   "dependencies": {
     "@types/jest": "^21.1.5",

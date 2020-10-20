@@ -1,7 +1,5 @@
 with (import <nixpkgs> {});
 
 mkShell {
-  buildInputs = [
-    exercism
-  ];
+  buildInputs = [ exercism ];
 }
