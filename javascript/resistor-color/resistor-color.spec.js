@@ -3,7 +3,6 @@ import { colorCode, COLORS } from './resistor-color'
 describe('ResistorColor', () => {
   describe('Color codes', () => {
     test('Black', () => {
-
       expect(colorCode("black")).toEqual(0)
     })
 

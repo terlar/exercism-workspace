@@ -1,12 +1,11 @@
-(* Test/exercise version: "1.1.0" *)
-
+(* hello-world - 1.1.0 *)
 open OUnit2
 open Hello_world
 
 let ae exp got _test_ctxt = assert_equal ~printer:(fun x -> x) exp got
 
 let tests = [
-     "Say Hi!" >:: ae "Hello, World!" hello;
+  "Say Hi!" >:: ae "Hello, World!" hello;
 ]
 
 let () =

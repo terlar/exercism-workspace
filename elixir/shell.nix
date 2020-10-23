@@ -1,7 +1,10 @@
-with (import <nixpkgs> {});
+{ nixpkgs ? import <nixpkgs> {}, erlangVersion ? "R22", elixirVersion ? "1_10" }:
+
+with nixpkgs;
 
 let
-  elixir = beam.packages.erlangR21.elixir_1_7;
+  erlang = beam.packages."erlang${erlangVersion}";
+  elixir = erlang."elixir_${elixirVersion}";
 in mkShell {
   buildInputs = [
     elixir

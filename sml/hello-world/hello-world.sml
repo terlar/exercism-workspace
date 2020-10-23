@@ -1,2 +1,2 @@
-fun hello (): string =
-  raise Fail "'hello' is not implemented"
+fun hello () =
+  "Hello, World!"

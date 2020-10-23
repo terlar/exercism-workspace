@@ -1,8 +1,12 @@
-let
-  moz_overlay = import (builtins.fetchTarball https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz);
-in with import <nixpkgs> {
-  overlays = [ moz_overlay ];
-};
+{ nixpkgsSrc ? <nixpkgs>
+, mozOverlay ? import (builtins.fetchTarball https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz)
+, nixpkgsArgs ? {
+  overlays = [ mozOverlay ];
+}
+, nixpkgs ? import nixpkgsSrc nixpkgsArgs
+}:
+
+with nixpkgs;
 
 let
   ruststable = (rustChannels.stable.rust.override {

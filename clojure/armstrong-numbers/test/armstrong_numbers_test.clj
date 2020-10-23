@@ -2,6 +2,10 @@
   (:require [clojure.test :refer [deftest is testing]]
             [armstrong-numbers :refer [armstrong?]]))
 
+(deftest armstrong-number-0
+  (testing "Zero is an Armstrong number"
+    (is (armstrong? 0))))
+
 (deftest armstrong-number-5
   (testing "Single digit numbers are Armstrong numbers"
     (is (armstrong? 5))))
@@ -24,7 +28,7 @@
 
 (deftest not-armstrong-number-9475
   (testing "Four digit number that is not an Armstrong number"
-    (is (not (armstrong? 9476)))))
+    (is (not (armstrong? 9475)))))
 
 (deftest armstrong-number-9926315
   (testing "Seven digit number that is an Armstrong number"
@@ -33,3 +37,7 @@
 (deftest not-armstrong-number-9926314
   (testing "Seven digit number that is not an Armstrong number"
     (is (not (armstrong? 9926314)))))
+
+(deftest armstrong-number-21897142587612075
+  (testing "Seventeen digit number that is an Armstrong number"
+    (is (armstrong? 21897142587612075))))

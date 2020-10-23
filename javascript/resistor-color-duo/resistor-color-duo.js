@@ -11,8 +11,8 @@ const COLORS = [
   "white"
 ];
 
-export function value(colors) {
-  return colors.reverse().reduce((acc, color, idx) => {
+export function decodedValue(colors) {
+  return colors.slice(0, 2).reverse().reduce((acc, color, idx) => {
     return acc + COLORS.indexOf(color) * 10 ** idx;
   }, 0);
 }

@@ -1,13 +1,19 @@
 !.dir-locals.el
 !.envrc
 
+*.aux
 *.beam
 *.cabal
+*.glob
 *.log
+*.vo
 *_flymake.hs
 .ghc.environment.*
 .lein-*
+.merlin
 .nrepl-port
+TAGS
+node_modules
 package-lock.json
 pytest
 stack.yaml.lock
@@ -19,10 +25,10 @@ __pycache__/
 _build/
 bower_components/
 build/
-dist/
 dist-newstyle/
+dist/
 generated-code/
-node_modules/
 output/
+project/
 target/
 tmp/

@@ -18,7 +18,7 @@ class Transcriptor {
     const reducer: NucleotidesToRnaReducer = (rna, nucleotide) => {
       const complement = nucleotideComplements[nucleotide]
       if (!complement) {
-        throw new TypeError(`Invalid DNA strand: dnaStrand=${dnaStrand}`)
+        throw new TypeError(`Invalid input DNA.`)
       }
 
       return `${rna}${complement}`

@@ -1,20 +1,21 @@
-with (import <nixpkgs> {});
+{ nixpkgs ? import <nixpkgs> {}, rubyVersion ? "2_5" }:
+
+with nixpkgs;
 
 let
-  ruby = ruby_2_5;
-  rubygems = (pkgs.rubygems.override { ruby = ruby; });
+  ruby = pkgs."ruby_${rubyVersion}";
+  rubyPackages = pkgs."rubyPackages_${rubyVersion}";
+
+  bundler = pkgs.bundler.override { inherit ruby; };
+  rubygems = pkgs.rubygems.override { inherit ruby; };
+  rufo = pkgs.callPackage ./.support/rufo { inherit ruby; };
 in mkShell {
   buildInputs = [
     ruby
     bundler
-    rubocop
+    rubyPackages.minitest
+
+    rufo
     solargraph
   ];
-
-  shellHook = ''
-    mkdir -p .nix-gems/bin
-    export GEM_HOME=$PWD/.nix-gems
-    export GEM_PATH=$GEM_HOME
-    export PATH=$GEM_HOME/bin:$PATH
-  '';
 }

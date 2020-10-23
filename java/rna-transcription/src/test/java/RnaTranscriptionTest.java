@@ -1,3 +1,4 @@
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -10,6 +11,11 @@ public class RnaTranscriptionTest {
     @Before
     public void setUp() {
         rnaTranscription = new RnaTranscription();
+    }
+
+    @Test
+    public void testEmptyRnaSequence() {
+        assertEquals("", rnaTranscription.transcribe(""));
     }
 
     @Test

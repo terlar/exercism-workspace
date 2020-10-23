@@ -1,6 +1,6 @@
 import org.scalatest.{Matchers, FunSuite}
 
-/** @version 1.1.0 */
+/** @version 1.2.0 */
 class SumOfMultiplesTest extends FunSuite with Matchers {
 
   test("multiples of 3 or 5 up to 1") {

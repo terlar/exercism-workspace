@@ -1,4 +1,4 @@
-require 'set'
+require "set"
 
 class SumOfMultiples
   attr_reader :factors
@@ -8,23 +8,13 @@ class SumOfMultiples
   end
 
   def to(limit)
-    natural_numbers(from: factors.min, to: limit - 1)
-      .select(&method(:multiple?))
-      .sum
-  end
-
-  private
-
-  def multiple?(number)
-    factors.any? { |factor| (number % factor).zero? }
-  end
-
-  def natural_numbers(from:, to:)
-    if from && to
-      from.upto(to)
-    else
-      []
-    end
+    factors.flat_map do |factor|
+      1.step
+       .lazy
+       .map { |i| i * factor }
+       .take_while { |i| i < limit }
+       .force
+    end.uniq.sum
   end
 end
 

@@ -1,8 +1,12 @@
-with (import <nixpkgs> {});
+{ nixpkgs ? import <nixpkgs> {}, jdkName ? "openjdk", jdkVersion ? "11" }:
 
-mkShell {
+with nixpkgs;
+
+let
+  jdk = pkgs."${jdkName}${jdkVersion}";
+in mkShell {
   buildInputs = [
+    jdk
     gradle
-    openjdk
   ];
 }

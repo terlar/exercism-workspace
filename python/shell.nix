@@ -1,8 +1,15 @@
-with (import <nixpkgs> {});
+{ nixpkgs ? import <nixpkgs> {} }:
 
-mkShell {
+with nixpkgs;
+
+let
+  python = python3;
+  pythonPackages = python3Packages;
+in mkShell {
   buildInputs = [
-    python3
-    python3Packages.black
+    python
+    pythonPackages.black
+    pythonPackages.ipython
+    pythonPackages.pytest
   ];
 }

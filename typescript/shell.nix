@@ -1,15 +1,44 @@
-with (import <nixpkgs> {});
+{ nodeVersion ? "10_x"
+, nixpkgs ? import <nixpkgs> {}
+, nix-npm-buildpackage ? nixpkgs.callPackage (builtins.fetchTarball {
+  url = "https://github.com/serokell/nix-npm-buildpackage/tarball/abde678d1584af0ad00477486bca26c880963a70";
+  sha256 = "0xvwk67j1aaswrk3mapfrfhfv6r1dmcrrm83fjjfy6ak8h6dk4ba";
+}) {}
+}:
+
+with nixpkgs;
 
 let
-  nodejs = nodejs-10_x;
+  nodejs = pkgs."nodejs-${nodeVersion}";
+  nodePackages = pkgs."nodePackages_${nodeVersion}";
+
+  nodeEnv = nix-npm-buildpackage.buildYarnPackage {
+    src = ./.support/env;
+  };
+
+  testBin = writeShellScriptBin "jest" ''
+    ln -fs ${nodeEnv}/node_modules
+    exec ${nodeEnv}/node_modules/.bin/jest "$@"
+  '';
+
+  lintBin = writeShellScriptBin "lint" ''
+    ln -fs ${nodeEnv}/node_modules
+    ${nodeEnv}/node_modules/.bin/tsc --noEmit -p .
+    exec ${nodeEnv}/node_modules/.bin/eslint_d . --ext .tsx,.ts
+  '';
 in mkShell {
   buildInputs = [
-    nodePackages.eslint_d
+    testBin
+    lintBin
+
+    nodejs
     nodePackages.indium
     nodePackages.javascript-typescript-langserver
     nodePackages.prettier
-    nodePackages.typescript
     nodePackages.yarn
-    nodejs
   ];
+
+  shellHook = ''
+    export PATH="${nodeEnv}/bin:$PATH"
+  '';
 }
