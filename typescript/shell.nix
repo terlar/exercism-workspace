@@ -39,6 +39,6 @@ in mkShell {
   ];
 
   shellHook = ''
-    export PATH="${nodeEnv}/bin:$PATH"
+    export PATH="${nodeEnv}/bin:$PATH:${nodeEnv}/node_modules/.bin"
   '';
 }

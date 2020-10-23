@@ -6,6 +6,7 @@
 *.cabal
 *.glob
 *.log
+*.tsbuildinfo
 *.vo
 *_flymake.hs
 .ghc.environment.*
