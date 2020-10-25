@@ -1,0 +1,43 @@
+{
+  "nodes": {
+    "nix-npm-buildpackage": {
+      "locked": {
+        "lastModified": 1599122181,
+        "narHash": "sha256-apHZDERTGe+kdAPVnFltIZvtoMvuqjpm5lqpII+ZfHc=",
+        "owner": "serokell",
+        "repo": "nix-npm-buildpackage",
+        "rev": "abde678d1584af0ad00477486bca26c880963a70",
+        "type": "github"
+      },
+      "original": {
+        "owner": "serokell",
+        "repo": "nix-npm-buildpackage",
+        "type": "github"
+      }
+    },
+    "nixpkgs": {
+      "locked": {
+        "lastModified": 1603176674,
+        "narHash": "sha256-r9vgYYqL1HfhMaVJX3b0rBoKHsc4FSSVnWArevM1Nss=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "05334ad78526ead39af85f846515606d9f052a11",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-20.09",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "root": {
+      "inputs": {
+        "nix-npm-buildpackage": "nix-npm-buildpackage",
+        "nixpkgs": "nixpkgs"
+      }
+    }
+  },
+  "root": "root",
+  "version": 7
+}

@@ -17,6 +17,7 @@ TAGS
 node_modules
 package-lock.json
 pytest
+result
 stack.yaml.lock
 yarn.lock
 
