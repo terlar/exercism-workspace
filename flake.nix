@@ -2,7 +2,7 @@
   description = "Exercism Workspace";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-20.09";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-npm-buildpackage.url = "github:serokell/nix-npm-buildpackage";
   };
 
