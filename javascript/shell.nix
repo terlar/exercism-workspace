@@ -1,4 +1,4 @@
-{ nodeVersion ? "10_x"
+{ nodeVersion ? "14_x"
 , nixpkgs ? (import ../. {}).pkgs
 }:
 
@@ -11,28 +11,49 @@ let
     src = ./.support/env;
   };
 
-  testBin = writeShellScriptBin "jest" ''
-    ln -fs ${nodeEnv}/node_modules
-    exec ${nodeEnv}/node_modules/.bin/jest "$@"
+  npmWrapper = writeShellScriptBin "npm" ''
+    [ -f node_modules ] || ln -fs ${nodeEnv}/node_modules
+
+    main() {
+      case "$*" in
+        install*)
+          exit 0
+        ;;
+        run*)
+          shift
+          main "$@"
+        ;;
+        test*)
+          shift
+          exec ${nodeEnv}/node_modules/.bin/jest "$@"
+        ;;
+        lint*)
+          exec ${nodeEnv}/node_modules/.bin/eslint . --ext .jsx,.js
+        ;;
+        *)
+          exec ${nodeEnv}/bin/npm "$@"
+        ;;
+      esac
+    }
+
+    main "$@"
   '';
 
   lintBin = writeShellScriptBin "lint" ''
     ln -fs ${nodeEnv}/node_modules
-    exec ${nodeEnv}/node_modules/.bin/eslint . --ext .jsx,.js
   '';
 in mkShell {
   buildInputs = [
-    testBin
-    lintBin
+    npmWrapper
 
     nodejs
     nodePackages.eslint_d
     nodePackages.indium
-    nodePackages.javascript-typescript-langserver
     nodePackages.prettier
+    nodePackages.typescript-language-server
   ];
 
   shellHook = ''
-    export PATH="${nodeEnv}/bin:$PATH"
+    export PATH="$PATH:${nodeEnv}/node_modules/.bin"
   '';
 }

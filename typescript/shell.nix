@@ -1,44 +1,64 @@
-{ nodeVersion ? "10_x"
-, nixpkgs ? import <nixpkgs> {}
-, nix-npm-buildpackage ? nixpkgs.callPackage (builtins.fetchTarball {
-  url = "https://github.com/serokell/nix-npm-buildpackage/tarball/abde678d1584af0ad00477486bca26c880963a70";
-  sha256 = "0xvwk67j1aaswrk3mapfrfhfv6r1dmcrrm83fjjfy6ak8h6dk4ba";
-}) {}
+{ nodeVersion ? "14_x"
+, nixpkgs ? (import ../. {}).pkgs
 }:
 
 with nixpkgs;
 
 let
   nodejs = pkgs."nodejs-${nodeVersion}";
-  nodePackages = pkgs."nodePackages_${nodeVersion}";
 
-  nodeEnv = nix-npm-buildpackage.buildYarnPackage {
+  nodeEnv = buildYarnPackage {
     src = ./.support/env;
   };
 
-  testBin = writeShellScriptBin "jest" ''
-    ln -fs ${nodeEnv}/node_modules
-    exec ${nodeEnv}/node_modules/.bin/jest "$@"
-  '';
+  yarnWrapper = writeShellScriptBin "yarn" ''
+    [ -f node_modules ] || ln -fs ${nodeEnv}/node_modules
 
-  lintBin = writeShellScriptBin "lint" ''
-    ln -fs ${nodeEnv}/node_modules
-    ${nodeEnv}/node_modules/.bin/tsc --noEmit -p .
-    exec ${nodeEnv}/node_modules/.bin/eslint_d . --ext .tsx,.ts
+    main() {
+      case "$*" in
+        ""|install*)
+          exit 0
+        ;;
+        run*)
+          shift
+          main "$@"
+        ;;
+        test*)
+          shift
+          exec ${nodeEnv}/node_modules/.bin/jest "$@"
+        ;;
+        lint:types*)
+          shift
+          exec ${nodeEnv}/node_modules/.bin/tsc --noEmit -p . "$@"
+        ;;
+        lint:ci*)
+          shift
+          exec ${nodeEnv}/node_modules/.bin/eslint_d . --ext .tsx,.ts "$@"
+        ;;
+        lint)
+          ${nodeEnv}/node_modules/.bin/tsc --noEmit -p .
+          exec ${nodeEnv}/node_modules/.bin/eslint_d . --ext .tsx,.ts
+        ;;
+        *)
+          exec ${nodePackages.yarn}/bin/yarn "$@"
+        ;;
+      esac
+    }
+
+    main "$@"
   '';
 in mkShell {
   buildInputs = [
-    testBin
-    lintBin
+    yarnWrapper
 
     nodejs
+    nodePackages.eslint_d
     nodePackages.indium
-    nodePackages.javascript-typescript-langserver
     nodePackages.prettier
-    nodePackages.yarn
+    nodePackages.typescript-language-server
   ];
 
   shellHook = ''
-    export PATH="${nodeEnv}/bin:$PATH:${nodeEnv}/node_modules/.bin"
+    export PATH="$PATH:${nodeEnv}/node_modules/.bin"
   '';
 }
