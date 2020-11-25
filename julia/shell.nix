@@ -1,11 +1,8 @@
-{ nixpkgs ? import <nixpkgs> {}, juliaVersion ? "11" }:
+{ juliaVersion ? "15"
+, pkgs ? (import ../. {}).pkgs
+, julia ? pkgs."julia_${juliaVersion}"
+}:
 
-with nixpkgs;
-
-let
-  julia = pkgs."julia_${juliaVersion}";
-in mkShell {
-  buildInputs = [
-    julia
-  ];
+pkgs.mkShell {
+  buildInputs = [ julia ];
 }

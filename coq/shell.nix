@@ -1,12 +1,9 @@
-{ nixpkgs ? import <nixpkgs> {}, coqVersion ? "8_9" }:
+{ coqVersion ? "8_9"
+, pkgs ? (import ../. {}).pkgs
+, coq ? pkgs."coq_${coqVersion}"
+, coqPackages ? pkgs."coqPackages_${coqVersion}"
+}:
 
-with nixpkgs;
-
-let
-  coq = pkgs."coq_${coqVersion}";
-  coqPackages = pkgs."coqPackages_${coqVersion}";
-in mkShell {
-  buildInputs = [
-    coq
-  ];
+pkgs.mkShell {
+  buildInputs = [ coq ];
 }

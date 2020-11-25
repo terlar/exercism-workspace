@@ -1,9 +1,5 @@
-{ nixpkgs ? import <nixpkgs> {} }:
+{ pkgs ? (import ../. {}).pkgs}:
 
-with nixpkgs;
-
-mkShell {
-  buildInputs = [
-    polyml
-  ];
+pkgs.mkShell {
+  buildInputs = [ pkgs.polyml ];
 }

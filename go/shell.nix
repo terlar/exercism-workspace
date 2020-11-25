@@ -1,11 +1,7 @@
-{ nixpkgs ? import <nixpkgs> {} }:
+{ pkgs ? (import ../. {}).pkgs }:
 
-with nixpkgs;
-
-let
-  gore = callPackage ./.support/overlays/packages/gore { };
-in mkShell {
-  buildInputs = [
+pkgs.mkShell {
+  buildInputs = with pkgs; [
     go
     gore
   ];

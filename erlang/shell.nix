@@ -1,11 +1,10 @@
-{ nixpkgs ? import <nixpkgs> {}, erlangVersion ? "R22" }:
+{ erlangVersion ? "R22"
+, pkgs ? (import ../. {}).pkgs
+, erlang ? pkgs."erlang${erlangVersion}"
+, beamPackages ? pkgs.beam.packages."erlang${erlangVersion}"
+}:
 
-with nixpkgs;
-
-let
-  erlang = nixpkgs."erlang${erlangVersion}";
-  beamPackages = beam.packages."erlang${erlangVersion}";
-in mkShell {
+pkgs.mkShell {
   buildInputs = [
     erlang
     beamPackages.rebar3

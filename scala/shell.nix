@@ -1,16 +1,13 @@
 { scalaVersion ? "2_13"
 , jdkName ? "openjdk"
-, jdkVersion ? "12"
-, nixpkgs ? import <nixpkgs> {}
+, jdkVersion ? "14"
+, pkgs ? (import ../. {}).pkgs
+, jdk ? pkgs."${jdkName}${jdkVersion}"
+, scala ? pkgs."scala_${scalaVersion}"
 }:
 
-with nixpkgs;
-
-let
-  jdk = pkgs."${jdkName}${jdkVersion}";
-  scala = pkgs."scala_${scalaVersion}";
-in mkShell {
-  buildInputs = [
+pkgs.mkShell {
+  buildInputs = with pkgs; [
     coursier
     jdk
     sbt

@@ -4,9 +4,17 @@
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
     nix-npm-buildpackage.url = "github:serokell/nix-npm-buildpackage";
+    ghcide-nix = {
+      url = "github:cachix/ghcide-nix";
+      flake = false;
+    };
+    nixpkgs-mozilla = {
+      url = "github:mozilla/nixpkgs-mozilla";
+      flake = false;
+    };
   };
 
-  outputs = { self, nixpkgs, nix-npm-buildpackage }:
+  outputs = { self, nixpkgs, ghcide-nix, nixpkgs-mozilla, nix-npm-buildpackage }:
     let
       pkgsFor = system:
         import nixpkgs {
@@ -19,12 +27,18 @@
         let
           overlays = [
             nix-npm-buildpackage.overlay
-            (final: prev: { nodejs = prev.nodejs-12_x; })
+            (import nixpkgs-mozilla)
+            (final: prev: { nodejs = prev.nodejs-14_x; })
           ];
         in foldl' (flip extends) (_: prev) overlays final;
 
-      packages.x86_64-linux = let pkgs = pkgsFor "x86_64-linux";
-      in { inherit (pkgs) nodejs; };
+      packages.x86_64-linux = let
+        pkgs = pkgsFor "x86_64-linux";
+        ghcides = import ghcide-nix { };
+      in {
+        inherit (pkgs) nodejs;
+        inherit (ghcides) ghcide-ghc8102 ghcide-ghc884 ghcide-ghc865;
+      };
 
       devShell.x86_64-linux = let
         pkgs = pkgsFor "x86_64-linux";

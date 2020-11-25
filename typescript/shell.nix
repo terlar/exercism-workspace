@@ -1,17 +1,14 @@
 { nodeVersion ? "14_x"
-, nixpkgs ? (import ../. {}).pkgs
+, pkgs ? (import ../. {}).pkgs
+, nodejs ? pkgs."nodejs-${nodeVersion}"
 }:
 
-with nixpkgs;
-
 let
-  nodejs = pkgs."nodejs-${nodeVersion}";
-
-  nodeEnv = buildYarnPackage {
+  nodeEnv = pkgs.buildYarnPackage {
     src = ./.support/env;
   };
 
-  yarnWrapper = writeShellScriptBin "yarn" ''
+  yarnWrapper = pkgs.writeShellScriptBin "yarn" ''
     [ -f node_modules ] || ln -fs ${nodeEnv}/node_modules
 
     main() {
@@ -40,15 +37,15 @@ let
           exec ${nodeEnv}/node_modules/.bin/eslint_d . --ext .tsx,.ts
         ;;
         *)
-          exec ${nodePackages.yarn}/bin/yarn "$@"
+          exec ${pkgs.nodePackages.yarn}/bin/yarn "$@"
         ;;
       esac
     }
 
     main "$@"
   '';
-in mkShell {
-  buildInputs = [
+in pkgs.mkShell {
+  buildInputs = with pkgs; [
     yarnWrapper
 
     nodejs

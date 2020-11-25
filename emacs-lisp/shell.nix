@@ -1,14 +1,12 @@
-{ nixpkgs ? import <nixpkgs> {} }:
-
-with nixpkgs;
+{ pkgs ? (import ../. {}).pkgs }:
 
 let
-  ertRun = writeShellScriptBin "ert-run" ''
-    ${emacs}/bin/emacs -batch -l ert -l $1 -f ert-run-tests-batch-and-exit
+  ertRun = pkgs.writeShellScriptBin "ert-run" ''
+    ${pkgs.emacs}/bin/emacs -batch -l ert -l $1 -f ert-run-tests-batch-and-exit
   '';
-in mkShell {
-  buildInputs = [
-    emacs
+in pkgs.mkShell {
+  buildInputs = with pkgs; [
     ertRun
+    emacs
   ];
 }

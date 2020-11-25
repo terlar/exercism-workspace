@@ -1,9 +1,5 @@
-{ nixpkgs ? import <nixpkgs> {} }:
+{ pkgs ? (import ../. {}).pkgs }:
 
-with nixpkgs;
-
-mkShell {
-  buildInputs = [
-    nim
-  ];
+pkgs.mkShell {
+  buildInputs = [ pkgs.nim ];
 }

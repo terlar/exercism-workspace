@@ -1,9 +1,7 @@
-{ nixpkgs ? import <nixpkgs> {} }:
+{ pkgs ? (import ../. {}).pkgs }:
 
-with nixpkgs;
-
-mkShell {
-  buildInputs = [
+pkgs.mkShell {
+  buildInputs = with pkgs; [
     elmPackages.elm
     elmPackages.elm-format
     elmPackages.elm-language-server

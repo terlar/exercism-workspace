@@ -1,13 +1,10 @@
-{ nodeVersion ? "12_x"
-, nixpkgs ? (import ../. {}).pkgs
+{ nodeVersion ? "14_x"
+, pkgs ? (import ../. {}).pkgs
+, nodejs ? pkgs."nodejs-${nodeVersion}"
 }:
 
-with nixpkgs;
-
-let
-  nodejs = pkgs."nodejs-${nodeVersion}";
-in mkShell {
-  buildInputs = [
+pkgs.mkShell {
+  buildInputs = with pkgs; [
     nodejs
     clojure
   ];

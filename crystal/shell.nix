@@ -1,11 +1,8 @@
-{ nixpkgs ? import <nixpkgs> {}, crystalVersion ? "0_32" }:
+{ crystalVersion ? "0_35"
+, pkgs ? (import ../. {}).pkgs
+, crystal ? pkgs."crystal_${crystalVersion}"
+}:
 
-with nixpkgs;
-
-let
-  crystal = pkgs."crystal_${crystalVersion}";
-in mkShell {
-  buildInputs = [
-    crystal
-  ];
+pkgs.mkShell {
+  buildInputs = [ crystal ];
 }

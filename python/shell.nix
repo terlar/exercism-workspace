@@ -1,15 +1,20 @@
-{ nixpkgs ? import <nixpkgs> {} }:
+{ pythonVersion ? "38"
+, pkgs ? (import ../. {}).pkgs
+, python ? pkgs."python${pythonVersion}"
+, pythonPackages ? pkgs."python${pythonVersion}Packages"
+}:
 
-with nixpkgs;
-
-let
-  python = python3;
-  pythonPackages = python3Packages;
-in mkShell {
+pkgs.mkShell {
   buildInputs = [
     python
+
     pythonPackages.black
     pythonPackages.ipython
+    pythonPackages.mypy
     pythonPackages.pytest
+
+    pythonPackages.pyls-mypy
+    pythonPackages.python-language-server
+    pythonPackages.rope
   ];
 }

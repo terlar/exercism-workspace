@@ -1,22 +1,14 @@
-{ nixpkgsSrc ? <nixpkgs>
-, mozOverlay ? import (builtins.fetchTarball https://github.com/mozilla/nixpkgs-mozilla/archive/master.tar.gz)
-, nixpkgsArgs ? {
-  overlays = [ mozOverlay ];
-}
-, nixpkgs ? import nixpkgsSrc nixpkgsArgs
-}:
-
-with nixpkgs;
+{ pkgs ? (import ../. {}).pkgs }:
 
 let
-  ruststable = (rustChannels.stable.rust.override {
+  ruststable = (pkgs.rustChannels.stable.rust.override {
     extensions = ["rust-src" "rls-preview" "rust-analysis" "rustfmt-preview"];
   });
-in mkShell {
-  buildInputs = [ openssl nasm ruststable cmake zlib ];
+in pkgs.mkShell {
+  buildInputs = with pkgs; [ openssl nasm ruststable cmake zlib ];
 
   shellHook = ''
-    export OPENSSL_DIR="${openssl.dev}"
-    export OPENSSL_LIB_DIR="${openssl.out}/lib"
+    export OPENSSL_DIR="${pkgs.openssl.dev}"
+    export OPENSSL_LIB_DIR="${pkgs.openssl.out}/lib"
   '';
 }

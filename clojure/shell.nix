@@ -1,11 +1,11 @@
-{ nixpkgs ? import <nixpkgs> {}, jdkName ? "openjdk", jdkVersion ? "8" }:
+{ jdkName ? "openjdk"
+, jdkVersion ? "14"
+, pkgs ? (import ../. {}).pkgs
+, jdk ? pkgs."${jdkName}${jdkVersion}"
+}:
 
-with nixpkgs;
-
-let
-  jdk = pkgs."${jdkName}${jdkVersion}";
-in mkShell {
-  buildInputs = [
+pkgs.mkShell {
+  buildInputs = with pkgs; [
     clojure
     jdk
     leiningen
