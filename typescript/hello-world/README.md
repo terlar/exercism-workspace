@@ -1,5 +1,10 @@
 # Hello World
 
+Welcome to Hello World on Exercism's TypeScript Track.
+If you need help running the tests or submitting your code, check out `HELP.md`.
+
+## Instructions
+
 The classical introductory exercise. Just say "Hello, World!".
 
 ["Hello, World!"](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program) is
@@ -63,13 +68,12 @@ Open up the test file, hello-world.test.ts.
 There is a single test inside:
 
 ```typescript
-  it('says hello world with no name', () => {
-    expect(HelloWorld.hello()).toEqual('Hello, World!')
-  })
+it('says hello world', () => {
+  expect(hello()).toEqual('Hello, World!')
+})
 ```
 
-
-Run the tests now, with the following command on the command-line:
+Run the test now, with the following command on the command-line:
 
 ```bash
 $ yarn test
@@ -80,19 +84,19 @@ The test fails, which makes sense since you've not written any code yet.
 The failure looks like this:
 
 ```
-    × says hello world with no name (5ms)
+    × says hello world (5ms)
 
-  ● Hello World › says hello world with no name
+  ● Hello World › says hello world
 
     expect(received).toEqual(expected) // deep equality
 
     Expected: "Hello, World!"
-    Received: undefined
+    Received: "What's up doc 👋🏽?"
 
       4 |
-      5 |   it('says hello world with no name', () => {
-    > 6 |     expect(HelloWorld.hello()).toEqual('Hello, World!')
-        |                                ^
+      5 |   it('says hello world', () => {
+    > 6 |     expect(hello()).toEqual('Hello, World!')
+        |                     ^
       7 |   })
       8 |
       9 | })
@@ -103,82 +107,56 @@ The failure looks like this:
 And these are those code lines with probable defects in the `hello-world.test.ts` file:
 
 the 6th line:
-```
-    expect(HelloWorld.hello)).toEqual('Hello, World!')
-                              ^
-```
-
-
-Hence the problem is with the `HelloWorld.hello()` call where we are calling the `hello` static method from the `HelloWorld` class.
-We can see that the test is expecting `'Hello, World!'` as output, but instead is getting `undefined`.
-
-So let's check now this method in the `hello-worlds.ts` file:
 
 ```typescript
-class HelloWorld {
-    static hello() {
-        // Your code here
-    }
-}
-
-export default HelloWorld
+    expect(hello()).toEqual('Hello, World!')
+                    ^
 ```
 
-Now we see that the method doesn't return anything, which is the reason for our failure. Let's fix this by adding a return value:
+Hence the problem is with the `hello()` function call.
+We can see that the test is expecting `'Hello, World!'` as output, but instead is getting `"What's up doc 👋🏽?"`.
+
+So let's check now this function in the `hello-worlds.ts` file:
 
 ```typescript
-class HelloWorld {
-    static hello(message:string) {
-        return 'Hello, World!'
-    }
+export function hello(): string {
+  return "What's up doc 👋🏽?"
 }
-
-export default HelloWorld
 ```
 
-Run tests again:
+Now we see that the function returns the incorrect string, which is the reason for our failure. Let's fix this by changing the returned value:
+
+```typescript
+export function hello(): string {
+  return 'Hello, World!'
+}
+```
+
+Run the test again:
+
 ```bash
  PASS  ./hello-world.test.ts
   Hello World
-    √ says hello world with no name (4ms)
-```
-And they pass!
-
-Now when we are done, let's submit our solution to exercism:
-
-```bash
-$ exercism submit hello-world.ts
+    √ says hello world (4ms)
 ```
 
-
-## Setup
-
-Go through the setup instructions for TypeScript to install the necessary
-dependencies:
-
-[https://exercism.io/tracks/typescript/installation](https://exercism.io/tracks/typescript/installation)
-
-## Requirements
-
-Install assignment dependencies:
-
-```bash
-$ yarn install
-```
-
-## Making the test suite pass
-
-Execute the tests with:
-
-```bash
-$ yarn test
-```
+And it passes!
 
 ## Source
 
-This is an exercise to introduce users to using Exercism [http://en.wikipedia.org/wiki/%22Hello,_world!%22_program](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program)
+### Created by
 
-## Submitting Incomplete Solutions
+- @masters3d
 
-It's possible to submit an incomplete solution so you can see how others have
-completed the exercise.
+### Contributed to by
+
+- @DFXLuna
+- @iHiD
+- @kytrinyx
+- @lukaszklis
+- @porkostomus
+- @SleeplessByte
+
+### Based on
+
+This is an exercise to introduce users to using Exercism - http://en.wikipedia.org/wiki/%22Hello,_world!%22_program

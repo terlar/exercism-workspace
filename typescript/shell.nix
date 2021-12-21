@@ -1,5 +1,5 @@
 { nodeVersion ? "14_x"
-, pkgs ? (import ../. {}).pkgs
+, pkgs ? (import ../. { }).pkgs
 , nodejs ? pkgs."nodejs-${nodeVersion}"
 }:
 
@@ -22,6 +22,7 @@ let
         ;;
         test*)
           shift
+          ${nodeEnv}/node_modules/.bin/tsc --noEmit -p .
           exec ${nodeEnv}/node_modules/.bin/jest "$@"
         ;;
         lint:types*)
@@ -44,7 +45,8 @@ let
 
     main "$@"
   '';
-in pkgs.mkShell {
+in
+pkgs.mkShell {
   buildInputs = with pkgs; [
     yarnWrapper
 

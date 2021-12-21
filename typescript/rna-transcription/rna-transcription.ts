@@ -10,22 +10,18 @@ const nucleotideComplements: NucleotideComplementDictionary = {
   G: "C",
   C: "G",
   T: "A",
-  A: "U"
+  A: "U",
 }
 
-class Transcriptor {
-  toRna(dnaStrand: string): string {
-    const reducer: NucleotidesToRnaReducer = (rna, nucleotide) => {
-      const complement = nucleotideComplements[nucleotide]
-      if (!complement) {
-        throw new TypeError(`Invalid input DNA.`)
-      }
-
-      return `${rna}${complement}`
+export function toRna(dnaStrand: string): string {
+  const reducer: NucleotidesToRnaReducer = (rna, nucleotide) => {
+    const complement = nucleotideComplements[nucleotide]
+    if (!complement) {
+      throw new TypeError(`Invalid input DNA.`)
     }
 
-    return dnaStrand.split("").reduce(reducer, "")
+    return `${rna}${complement}`
   }
-}
 
-export default Transcriptor
+  return dnaStrand.split("").reduce(reducer, "")
+}
