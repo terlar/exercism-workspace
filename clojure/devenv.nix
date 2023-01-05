@@ -1,0 +1,3 @@
+{
+  languages.clojure.enable = true;
+}

@@ -1,36 +1,10 @@
 !.dir-locals.el
 !.envrc
 
-*.aux
-*.beam
-*.cabal
-*.glob
-*.log
-*.tsbuildinfo
-*.vo
-*_flymake.hs
-.ghc.environment.*
-.lein-*
-.merlin
-.nrepl-port
-TAGS
-node_modules
-package-lock.json
-pytest
-result
-stack.yaml.lock
-yarn.lock
+# Exercism
+.exercism/
 
-.gradle/
-.stack-work/
-__pycache__/
-_build/
-bower_components/
-build/
-dist-newstyle/
-dist/
-generated-code/
-output/
-project/
-target/
-tmp/
+# Devenv
+.devenv*
+.direnv
+.pre-commit-config.yaml

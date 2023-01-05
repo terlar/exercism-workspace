@@ -14,5 +14,5 @@
 
 (defn to-rna
   "Return RNA complement for DNA strand."
-  [dna-strand]
-  (apply str (map get-nucleotide-complement dna-strand)))
+  [dna]
+  (apply str (map get-nucleotide-complement dna)))

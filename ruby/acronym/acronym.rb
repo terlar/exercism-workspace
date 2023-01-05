@@ -8,7 +8,7 @@
 # as HyperText Markup Language are supported.
 class Acronym
   def self.abbreviate(phrase)
-    phrase.scan(/\b\w|[A-Z][a-z]/).reduce("") do |memo, word|
+    phrase.scan(/\b\w|[A-Z][a-z]/).reduce('') do |memo, word|
       memo + word.chr.upcase
     end
   end

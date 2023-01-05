@@ -2,56 +2,28 @@
   description = "Exercism Workspace";
 
   inputs = {
+    devenv.url = "github:cachix/devenv";
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nix-npm-buildpackage.url = "github:serokell/nix-npm-buildpackage";
-    ghcide-nix = {
-      url = "github:cachix/ghcide-nix";
-      flake = false;
-    };
-    nixpkgs-mozilla = {
-      url = "github:mozilla/nixpkgs-mozilla";
-      flake = false;
-    };
+    fenix.url = "github:nix-community/fenix";
+    fenix.inputs.nixpkgs.follows = "nixpkgs";
+    npm-buildpackage.url = "github:serokell/nix-npm-buildpackage";
+    npm-buildpackage.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = { self, nixpkgs, ghcide-nix, nixpkgs-mozilla, nix-npm-buildpackage }:
-    let
-      pkgsFor = system:
-        import nixpkgs {
-          inherit system;
-          overlays = [ self.overlay ];
+  outputs = inputs: let
+    systems = ["x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"];
+    forAllSystems = inputs.nixpkgs.lib.genAttrs systems;
+  in {
+    formatter = forAllSystems (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
+
+    devShells =
+      forAllSystems
+      (system: {
+        default = inputs.devenv.lib.mkShell {
+          inherit inputs;
+          pkgs = inputs.nixpkgs.legacyPackages.${system};
+          modules = [./devenv.nix];
         };
-    in {
-      overlay = final: prev:
-        with prev.lib;
-        let
-          overlays = [
-            nix-npm-buildpackage.overlay
-            (import nixpkgs-mozilla)
-            (final: prev: { nodejs = prev.nodejs-14_x; })
-          ];
-        in foldl' (flip extends) (_: prev) overlays final;
-
-      packages.x86_64-linux = let
-        pkgs = pkgsFor "x86_64-linux";
-        ghcides = import ghcide-nix { };
-      in {
-        inherit (pkgs) nodejs;
-        inherit (ghcides) ghcide-ghc8102 ghcide-ghc884 ghcide-ghc865;
-      };
-
-      devShell.x86_64-linux = let
-        pkgs = pkgsFor "x86_64-linux";
-        setupBin = pkgs.writeShellScriptBin "setup-exercism" ''
-          exercism configure --workspace=$PWD --token=''${1?please provide token to use with exercism}
-        '';
-      in pkgs.mkShell {
-        nativeBuildInputs = [
-          setupBin
-
-          pkgs.exercism
-          pkgs.nixfmt
-        ];
-      };
-    };
+      });
+  };
 }

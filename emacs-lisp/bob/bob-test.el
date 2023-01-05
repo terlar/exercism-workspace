@@ -1,4 +1,4 @@
-;;; bob-test.el --- ERT tests for Bob (exercism)
+;;; bob-test.el --- ERT tests for Bob (exercism)  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Common test data version: 1.2.0 6dc2014
@@ -6,7 +6,7 @@
 ;;; Code:
 
 (load-file "bob.el")
-
+(declare-function response-for "bob.el" (phrase))
 
 (ert-deftest responds-to-stating-something ()
   (should (string= "Whatever." (response-for "Tom-ay-to, tom-aaaah-to."))))

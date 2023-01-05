@@ -1,4 +1,4 @@
-require "set"
+require 'set'
 
 class SumOfMultiples
   attr_reader :factors
@@ -9,6 +9,8 @@ class SumOfMultiples
 
   def to(limit)
     factors.flat_map do |factor|
+      return 0 if factor.zero?
+
       1.step
        .lazy
        .map { |i| i * factor }

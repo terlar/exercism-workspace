@@ -1,5 +1,10 @@
 # Hello World
 
+Welcome to Hello World on Exercism's Crystal Track.
+If you need help running the tests or submitting your code, check out `HELP.md`.
+
+## Instructions
+
 The classical introductory exercise. Just say "Hello, World!".
 
 ["Hello, World!"](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program) is
@@ -47,33 +52,20 @@ Be sure to submit the source file in the `src` directory when submitting your so
 $ exercism submit src/hello_world.cr
 ```
 
-
-## Setup
-
-Follow the setup instructions for Crystal here:
-
-http://exercism.io/languages/crystal
-
-More help installing can be found here:
-
-http://crystal-lang.org/docs/installation/index.html
-
-## Making the Test Suite Pass
-
-Execute the tests with:
-
-```bash
-$ crystal spec
-```
-
-In each test suite all but the first test have been skipped.
-
-Once you get a test passing, you can unskip the next one by changing `pending` to `it`.
-
 ## Source
 
-This is an exercise to introduce users to using Exercism [http://en.wikipedia.org/wiki/%22Hello,_world!%22_program](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program)
+### Created by
 
-## Submitting Incomplete Solutions
+- @mhelmetag
 
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.
+### Contributed to by
+
+- @amscotti
+- @bmulvihill
+- @issyl0
+- @jhonnymoreira
+- @kytrinyx
+
+### Based on
+
+This is an exercise to introduce users to using Exercism - http://en.wikipedia.org/wiki/%22Hello,_world!%22_program

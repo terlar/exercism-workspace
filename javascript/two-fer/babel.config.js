@@ -1,14 +1,4 @@
 module.exports = {
-  presets: [
-    [
-      '@babel/env',
-      {
-        targets: {
-          node: 'current',
-        },
-        useBuiltIns: false,
-      },
-
-    ],
-  ],
+  presets: ['@exercism/babel-preset-javascript'],
+  plugins: [],
 };

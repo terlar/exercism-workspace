@@ -1,5 +1,10 @@
 # Hello World
 
+Welcome to Hello World on Exercism's Erlang Track.
+If you need help running the tests or submitting your code, check out `HELP.md`.
+
+## Instructions
+
 The classical introductory exercise. Just say "Hello, World!".
 
 ["Hello, World!"](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program) is
@@ -14,32 +19,24 @@ The objectives are simple:
 
 If everything goes well, you will be ready to fetch your first real exercise.
 
-## Running tests
-
-In order to run the tests, issue the following command from the exercise
-directory:
-
-For running the tests provided, `rebar3` is used as it is the official build and
-dependency management tool for erlang now. Please refer to [the tracks installation
-instructions](http://exercism.io/languages/erlang/installation) on how to do that.
-
-In order to run the tests, you can issue the following command from the exercise
-directory.
-
-```bash
-$ rebar3 eunit
-```
-
-## Questions?
-
-For detailed information about the Erlang track, please refer to the
-[help page](http://exercism.io/languages/erlang) on the Exercism site.
-This covers the basic information on setting up the development
-environment expected by the exercises.
-
 ## Source
 
-This is an exercise to introduce users to using Exercism [http://en.wikipedia.org/wiki/%22Hello,_world!%22_program](http://en.wikipedia.org/wiki/%22Hello,_world!%22_program)
+### Created by
 
-## Submitting Incomplete Solutions
-It's possible to submit an incomplete solution so you can see how others have completed the exercise.
+- @barberj
+
+### Contributed to by
+
+- @duffn
+- @ErikSchierboom
+- @iHiD
+- @JordanAdams
+- @juhlig
+- @kytrinyx
+- @NobbZ
+- @tmcgilchrist
+- @xymbol
+
+### Based on
+
+This is an exercise to introduce users to using Exercism - http://en.wikipedia.org/wiki/%22Hello,_world!%22_program

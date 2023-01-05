@@ -1,0 +1,3 @@
+{
+  languages.kotlin.enable = true;
+}

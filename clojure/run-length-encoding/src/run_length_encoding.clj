@@ -2,8 +2,8 @@
 
 (defn run-length-encode
   "encodes a string with run-length-encoding"
-  [s]
-  (->> s
+  [plain-text]
+  (->> plain-text
        (partition-by identity)
        (map #(let [occurances (count %) char (first %)]
                (if (= 1 occurances)
@@ -13,8 +13,8 @@
 
 (defn run-length-decode
   "decodes a run-length-encoded string"
-  [s]
-  (->> s
+  [cipher-text]
+  (->> cipher-text
        (re-seq #"(\d+)?([^\d])")
        (mapcat
         (fn [[_ occurances char]]

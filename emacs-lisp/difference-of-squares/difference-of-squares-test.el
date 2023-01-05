@@ -1,10 +1,13 @@
-;;; difference-of-squares-test.el --- Tests for difference-of-squares (exercism)
+;;; difference-of-squares-test.el --- Tests for difference-of-squares (exercism)  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 
 ;;; Code:
 
 (load-file "difference-of-squares.el")
+(declare-function sum-of-squares "difference-of-squares.el" (n))
+(declare-function square-of-sum "difference-of-squares.el" (n))
+(declare-function difference "difference-of-squares.el" (n))
 
 (ert-deftest square-of-sum-to-5 ()
   (should (= 225 (square-of-sum 5))))

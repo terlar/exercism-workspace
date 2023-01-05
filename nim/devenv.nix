@@ -1,0 +1,3 @@
+{
+  languages.nim.enable = true;
+}

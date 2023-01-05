@@ -1,4 +1,4 @@
-;;; hello-world-test.el --- Tests for Hello World (exercism)
+;;; hello-world-test.el --- Tests for Hello World (exercism)  -*- lexical-binding: t; -*-
 
 ;;; Commentary:
 ;; Common test data version: 1.1.0 be3ae66
@@ -6,6 +6,7 @@
 ;;; Code:
 
 (load-file "hello-world.el")
+(declare-function hello "hello-world.el")
 
 (ert-deftest hello-world-test ()
   (should (string= (hello) "Hello, World!")))

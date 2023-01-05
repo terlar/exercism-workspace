@@ -1,0 +1,3 @@
+{
+  languages.scala.enable = true;
+}
