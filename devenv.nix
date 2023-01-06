@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [
     ./bash/devenv.nix
     ./clojure/devenv.nix
@@ -43,30 +47,17 @@
     exercism configure --workspace="$PWD" --token="$token"
   '';
 
-  languages.javascript.package = let
-    inherit (pkgs) nodejs;
-  in
-    pkgs.symlinkJoin {
-      name = "${nodejs.name}-wrapped";
-      paths = [
-        (pkgs.writeShellApplication {
-          name = "npm";
-          runtimeInputs = [nodejs];
-          text = ''
-            parent_dir="''${PWD%/*}"
-            type="''${parent_dir##*/}"
+  scripts.npm.exec = ''
+    parent_dir="''${PWD%/*}"
+    type="''${parent_dir##*/}"
 
-            case "$type" in
-              javascript) javascript-init ;;
-              typescript) typescript-init ;;
-            esac
+    case "$type" in
+      javascript) javascript-init ;;
+      typescript) typescript-init ;;
+    esac
 
-            ${nodejs}/bin/npm "$@"
-          '';
-        })
-        nodejs
-      ];
-    };
+    ${config.languages.javascript.package}/bin/npm "$@"
+  '';
 
   scripts.yarn.exec = ''
     parent_dir="''${PWD%/*}"
