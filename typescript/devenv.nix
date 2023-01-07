@@ -1,4 +1,5 @@
 {
+  config,
   inputs,
   pkgs,
   ...
@@ -9,29 +10,29 @@
     src = ./.nix-support;
   };
 in {
+  imports = [../common.nix];
+
+  enterShell = ''
+    echo "node $(${config.languages.javascript.package}/bin/node --version)"
+    echo "yarn $(${pkgs.yarn}/bin/yarn --version)"
+
+    echo
+    echo Run the tests with:
+    echo 'yarn test'
+
+    export PATH="$PATH:${nodeModules}/node_modules/.bin"
+  '';
+  scripts.test-all.exec = "yarn test";
+
   languages.typescript.enable = true;
 
-  packages = [
-    pkgs.yarn
-  ];
-
-  # pre-commit.hooks.eslint.enable = true;
-  # pre-commit.hooks.prettier.enable = true;
-
-  scripts.typescript-init.exec = ''
+  scripts.yarn.exec = ''
     if [[ ! node_modules -ef "${nodeModules}/node_modules" ]]; then
       echo Linking node_modules...
       rm -rf node_modules
       ln -s "${nodeModules}/node_modules"
     fi
-  '';
 
-  scripts.eslint.exec = ''
-    if [[ ! -f node_modules/.bin/eslint ]]; then
-      echo Please install node_modules
-      exit 1
-    fi
-
-    node_modules/.bin/eslint "$@"
+    ${pkgs.yarn}/bin/yarn "$@"
   '';
 }

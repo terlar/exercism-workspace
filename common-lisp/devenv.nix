@@ -1,13 +1,20 @@
 {pkgs, ...}: {
+  imports = [../common.nix];
+
+  enterShell = ''
+    quicklisp-init
+    sbcl --version
+
+    echo
+    echo Run the tests with:
+    echo 'quicklisp-run-tests *-test.lisp'
+  '';
+  scripts.test-all.exec = "quicklisp-run-tests *-test.lisp";
+
   packages = [
     pkgs.sbcl
     pkgs.lispPackages.quicklisp
   ];
-
-  scripts.quicklisp-run-tests.exec = ''
-    test_name="''${1%.lisp}"
-    quicklisp run -- --load "$1" --eval "($test_name:run-tests)" --quit
-  '';
 
   scripts.quicklisp-init.exec = ''
     if [[ ! -d $HOME/quicklisp ]]; then
@@ -20,7 +27,8 @@
     fi
   '';
 
-  enterShell = ''
-    quicklisp-init
+  scripts.quicklisp-run-tests.exec = ''
+    test_name="''${1%.lisp}"
+    quicklisp run -- --load "$1" --eval "($test_name:run-tests)" --quit
   '';
 }

@@ -1,12 +1,19 @@
 {pkgs, ...}: {
+  imports = [../common.nix];
+
+  enterShell = ''
+    lua -v
+    echo "busted $(busted --version)"
+
+    echo
+    echo Run the tests with:
+    echo 'busted *_spec.lua'
+
+    export LUA_PATH="$LUA_PATH;?.lua"
+  '';
+  scripts.test-all.exec = "busted *_spec.lua";
+
   languages.lua.enable = true;
 
   packages = [pkgs.luaPackages.busted];
-
-  enterShell = ''
-    export LUA_PATH="$LUA_PATH;?.lua"
-  '';
-
-  pre-commit.hooks.luacheck.enable = true;
-  pre-commit.hooks.stylua.enable = true;
 }

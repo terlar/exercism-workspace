@@ -1,4 +1,15 @@
 {pkgs, ...}: {
+  imports = [../common.nix];
+
+  enterShell = ''
+    emacs --version | head -1
+
+    echo
+    echo Run the tests with:
+    echo 'ert-run *-test.el'
+  '';
+  scripts.test-all.exec = "ert-run *-test.el";
+
   packages = [pkgs.emacs];
 
   scripts.ert-run.exec = ''

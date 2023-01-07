@@ -1,4 +1,16 @@
 {pkgs, ...}: {
+  imports = [../common.nix];
+
+  enterShell = ''
+    ocaml --version
+    echo "dune $(dune --version)"
+
+    echo
+    echo Run the tests with:
+    echo 'make'
+  '';
+  scripts.test-all.exec = "make";
+
   languages.ocaml.enable = true;
 
   packages = [

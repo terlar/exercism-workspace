@@ -11,19 +11,33 @@
   };
 
   outputs = inputs: let
+    inherit (inputs.nixpkgs) lib;
     systems = ["x86_64-linux" "i686-linux" "x86_64-darwin" "aarch64-linux" "aarch64-darwin"];
-    forAllSystems = inputs.nixpkgs.lib.genAttrs systems;
+    forAllSystems = lib.genAttrs systems;
   in {
     formatter = forAllSystems (system: inputs.nixpkgs.legacyPackages.${system}.alejandra);
 
     devShells =
       forAllSystems
-      (system: {
-        default = inputs.devenv.lib.mkShell {
-          inherit inputs;
-          pkgs = inputs.nixpkgs.legacyPackages.${system};
-          modules = [./devenv.nix];
-        };
-      });
+      (system:
+        {
+          default = inputs.devenv.lib.mkShell {
+            inherit inputs;
+            pkgs = inputs.nixpkgs.legacyPackages.${system};
+            modules = [./devenv.nix];
+          };
+        }
+        // (lib.pipe ./. [
+          builtins.readDir
+          (lib.filterAttrs (n: v:
+            (v == "directory")
+            && builtins.pathExists (./. + "/${n}/devenv.nix")))
+          (builtins.mapAttrs (n: _:
+            inputs.devenv.lib.mkShell {
+              inherit inputs;
+              pkgs = inputs.nixpkgs.legacyPackages.${system};
+              modules = [(./. + "/${n}/devenv.nix")];
+            }))
+        ]));
   };
 }
