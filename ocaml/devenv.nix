@@ -1,4 +1,8 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: {
   imports = [../common.nix];
 
   enterShell = ''
@@ -23,7 +27,15 @@
     pkgs.ocamlPackages.ounit
     pkgs.ocamlPackages.qcheck
 
+    # Lib deps
+    pkgs.ocamlPackages.ounit2
+    pkgs.ocamlPackages.seq
+    pkgs.ocamlPackages.sexplib0
+    pkgs.ocamlPackages.stdlib-shims
+
     # REPL
     pkgs.ocamlPackages.utop
   ];
+
+  env.OCAMLPATH = "${config.env.DEVENV_PROFILE}/lib/ocaml/${pkgs.ocamlPackages.ocaml.version}/site-lib/";
 }
