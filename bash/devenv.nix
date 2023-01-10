@@ -7,7 +7,7 @@
 
     echo
     echo Run the tests with:
-    echo 'bats *_test.sh'
+    echo 'bats *.bats'
   '';
 
   scripts.test-all.exec = ''
