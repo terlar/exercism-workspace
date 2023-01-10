@@ -22,7 +22,7 @@ main() {
         [[ "${1:$i:1}" != "${2:$i:1}" ]] && ((diff++))
     done
 
-    echo $diff
+    echo "$diff"
 }
 
 main "$@"
