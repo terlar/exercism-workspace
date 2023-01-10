@@ -1,20 +1,25 @@
-const earthOrbitalPeriodSeconds = 31557600
-const orbitalPeriodFactors = {
-  earth:   1,
+const earthYearSeconds = 31557600;
+const orbitalPeriodInEarthYears = {
+  earth: 1,
   mercury: 0.2408467,
-  venus:   0.61519726,
-  mars:    1.8808158,
+  venus: 0.61519726,
+  mars: 1.8808158,
   jupiter: 11.862615,
-  saturn:  29.447498,
-  uranus:  84.016846,
-  neptune: 164.79132
-}
+  saturn: 29.447498,
+  uranus: 84.016846,
+  neptune: 164.79132,
+};
 
-const yearSeconds = (planet) => {
-  return earthOrbitalPeriodSeconds * orbitalPeriodFactors[planet]
-}
+const round = (number, precision) => {
+  const power = 10 ** precision;
+  return Math.round(number * power) / power;
+};
+
+const orbitalPeriodInEarthYearSecondsFor = (planet) => {
+  return earthYearSeconds * orbitalPeriodInEarthYears[planet];
+};
 
 export const age = (planet, seconds) => {
-  const yearWithDecimals = seconds / yearSeconds(planet)
-  return Math.round(yearWithDecimals * 100) / 100
+  const earthYear = seconds / orbitalPeriodInEarthYearSecondsFor(planet);
+  return round(earthYear, 2);
 };
