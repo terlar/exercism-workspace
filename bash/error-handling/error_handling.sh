@@ -1,16 +1,12 @@
 #!/usr/bin/env bash
 
 usage() {
-    cmd="$(basename "$0")"
-    echo "Usage: $cmd <person>"
+    echo "Usage: ${0##*/} <person>"
+    exit 1
 }
 
 main() {
-    if [[ "$#" -ne 1 ]]; then
-        usage
-        exit 1
-    fi
-
+    [[ "$#" -eq 1 ]] || usage
     echo "Hello, $1"
 }
 
