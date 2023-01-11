@@ -1,21 +1,24 @@
-{-
-Welcome to a Spago project!
-You can edit this file as you like.
--}
 { name = "leap"
 , dependencies =
-  [ "console"
+  [ "arrays"
+  , "console"
   , "datetime"
   , "effect"
   , "either"
   , "enums"
+  , "exceptions"
+  , "foldable-traversable"
   , "integers"
   , "lists"
+  , "maybe"
   , "ordered-collections"
+  , "partial"
   , "prelude"
   , "psci-support"
   , "strings"
   , "test-unit"
+  , "tuples"
+  , "unfoldable"
   , "unicode"
   ]
 , packages = ./packages.dhall

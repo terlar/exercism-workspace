@@ -10,7 +10,6 @@
   pre-commit.hooks.black.enable = true;
   pre-commit.hooks.deadnix.enable = true;
   pre-commit.hooks.elm-format.enable = true;
-  pre-commit.hooks.govet.enable = true;
   pre-commit.hooks.hlint.enable = true;
   pre-commit.hooks.luacheck.enable = true;
   pre-commit.hooks.ormolu.enable = true;
