@@ -7,10 +7,15 @@
     echo
     echo Run the tests with:
     echo 'go test'
+
+    export GOPATH="$PWD"
   '';
   scripts.test-all.exec = "go test";
 
   languages.go.enable = true;
 
-  packages = [pkgs.gore];
+  packages = [
+    pkgs.gopls
+    pkgs.gore
+  ];
 }
