@@ -1,5 +1,6 @@
 !.dir-locals.el
 !.envrc
+.jdtls-cache/
 
 # Exercism
 .exercism/

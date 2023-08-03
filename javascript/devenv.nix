@@ -35,4 +35,8 @@ in {
 
     ${config.languages.javascript.package}/bin/npm "$@"
   '';
+
+  packages = [
+    pkgs.nodePackages.typescript-language-server
+  ];
 }

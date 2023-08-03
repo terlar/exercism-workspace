@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [../common.nix];
 
   enterShell = ''
@@ -12,4 +12,8 @@
 
   languages.java.enable = true;
   languages.java.gradle.enable = true;
+
+  packages = [
+    pkgs.jdt-language-server
+  ];
 }

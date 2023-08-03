@@ -6,7 +6,7 @@
     "lib": ["ESNEXT", "dom"],
     // Make sure typescript is configured to output ESM
     // https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c#how-can-i-make-my-typescript-project-output-esm
-    "module": "ES2020",
+    "module": "commonjs",
     // Since this project is using babel, TypeScript may target something very
     // high, and babel will make sure it runs on your local Node version.
     // https://babeljs.io/docs/en/
@@ -15,13 +15,7 @@
     "strict": true,
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true,
-
-    // Because we'll be using babel: ensure that Babel can safely transpile
-    // files in the TypeScript project.
-    //
-    // https://babeljs.io/docs/en/babel-plugin-transform-typescript/#caveats
-    "isolatedModules": true
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["*.ts", "*.tsx", ".meta/*.ts", ".meta/*.tsx"],
   "exclude": ["node_modules"]

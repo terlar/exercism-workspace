@@ -14,6 +14,7 @@
 
   packages = [
     pkgs.rubyPackages.minitest
+    pkgs.rubyPackages.pry
 
     pkgs.rufo
     pkgs.solargraph

@@ -35,4 +35,8 @@ in {
 
     ${pkgs.yarn}/bin/yarn "$@"
   '';
+
+  packages = [
+    pkgs.nodePackages.typescript-language-server
+  ];
 }
