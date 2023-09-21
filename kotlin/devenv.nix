@@ -1,4 +1,4 @@
-{
+{pkgs, ...}: {
   imports = [../common.nix];
 
   enterShell = ''
@@ -11,4 +11,6 @@
   scripts.test-all.exec = "gradle test";
 
   languages.kotlin.enable = true;
+
+  env.JAVA_HOME = pkgs.jre.home;
 }
