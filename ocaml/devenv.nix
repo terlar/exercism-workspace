@@ -18,6 +18,10 @@
   languages.ocaml.enable = true;
 
   packages = [
+    # Compilation
+    pkgs.gcc
+    pkgs.gnumake
+
     # Used to setup the OCAMLPATH for libs
     pkgs.ocamlPackages.findlib
 
