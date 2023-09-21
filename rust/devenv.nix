@@ -11,6 +11,8 @@
   '';
   scripts.test-all.exec = "cargo test -- --include-ignored";
 
-  languages.rust.enable = true;
-  languages.rust.version = "stable";
+  languages.rust = {
+    enable = true;
+    channel = "stable";
+  };
 }
