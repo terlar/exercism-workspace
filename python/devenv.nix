@@ -13,7 +13,7 @@
     echo Run the tests with:
     echo 'pytest *_test.py'
   '';
-  scripts.test-all.exec = "pytest *_test.py";
+  scripts.exercism-test.exec = "pytest *_test.py";
 
   languages.python.enable = true;
 

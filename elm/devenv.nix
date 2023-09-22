@@ -8,7 +8,7 @@
     echo Run the tests with:
     echo elm-test
   '';
-  scripts.test-all.exec = "elm-test";
+  scripts.exercism-test.exec = "elm-test";
 
   languages.elm.enable = true;
 

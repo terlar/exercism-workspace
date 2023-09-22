@@ -27,7 +27,7 @@ in {
     echo Run the tests with:
     echo 'bash test.sh'
   '';
-  scripts.test-all.exec = "bash test.sh";
+  scripts.exercism-test.exec = "bash test.sh";
 
   packages = [
     pkgs.gnu-cobol

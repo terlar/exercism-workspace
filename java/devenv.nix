@@ -8,7 +8,7 @@
     echo Run the tests with:
     echo 'gradle test'
   '';
-  scripts.test-all.exec = "gradle test";
+  scripts.exercism-test.exec = "gradle test";
 
   languages.java.enable = true;
   languages.java.gradle.enable = true;

@@ -28,7 +28,7 @@ Run the tests with:
 bats *.bats
 ```
 
-Run the tests according to the instructions.
+Run the tests according to the instructions (or using command `exercism-test`).
 
 Iterate on exercise until tests pass.
 

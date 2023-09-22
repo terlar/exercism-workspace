@@ -8,7 +8,7 @@
     echo Run the tests with:
     echo 'poly -q --use test.sml'
   '';
-  scripts.test-all.exec = "poly -q --use test.sml";
+  scripts.exercism-test.exec = "poly -q --use test.sml";
 
   packages = [pkgs.polyml];
 }

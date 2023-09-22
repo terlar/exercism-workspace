@@ -10,7 +10,7 @@
     echo 'quicklisp-run-tests *-test.lisp'
   '';
   scripts = {
-    test-all.exec = "quicklisp-run-tests *-test.lisp";
+    exercism-test.exec = "quicklisp-run-tests *-test.lisp";
 
     quicklisp-init.exec = ''
       if [[ ! -d $HOME/quicklisp ]]; then

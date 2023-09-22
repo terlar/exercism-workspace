@@ -8,7 +8,7 @@
     echo Run the tests with:
     echo 'ert-run *-test.el'
   '';
-  scripts.test-all.exec = "ert-run *-test.el";
+  scripts.exercism-test.exec = "ert-run *-test.el";
 
   packages = [pkgs.emacs];
 

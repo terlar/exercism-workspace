@@ -22,7 +22,7 @@ in {
 
     export PATH="$PATH:${nodeModules}/node_modules/.bin"
   '';
-  scripts.test-all.exec = "yarn test";
+  scripts.exercism-test.exec = "yarn test";
 
   languages.typescript.enable = true;
 

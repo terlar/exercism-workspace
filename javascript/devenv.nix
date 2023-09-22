@@ -22,7 +22,7 @@ in {
 
     export PATH="$PATH:${nodeModules}/node_modules/.bin"
   '';
-  scripts.test-all.exec = "npm test";
+  scripts.exercism-test.exec = "npm test";
 
   languages.javascript.enable = true;
 

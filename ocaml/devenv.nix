@@ -13,7 +13,7 @@
     echo Run the tests with:
     echo 'make'
   '';
-  scripts.test-all.exec = "make";
+  scripts.exercism-test.exec = "make";
 
   languages.ocaml.enable = true;
 

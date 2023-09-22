@@ -8,7 +8,7 @@
     echo Run the tests with:
     echo 'crystal spec'
   '';
-  scripts.test-all.exec = "crystal spec";
+  scripts.exercism-test.exec = "crystal spec";
 
   packages = [
     pkgs.pcre

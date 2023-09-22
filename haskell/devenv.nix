@@ -8,7 +8,7 @@
     echo Run the tests with:
     echo 'stack test'
   '';
-  scripts.test-all.exec = "stack test";
+  scripts.exercism-test.exec = "stack test";
 
   languages.haskell.enable = true;
 

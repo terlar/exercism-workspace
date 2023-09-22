@@ -10,7 +10,7 @@
     echo Run the tests with:
     echo 'spago test'
   '';
-  scripts.test-all.exec = "spago test";
+  scripts.exercism-test.exec = "spago test";
 
   languages.javascript.enable = true;
   languages.purescript.enable = true;

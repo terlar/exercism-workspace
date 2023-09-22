@@ -9,7 +9,7 @@
     echo 'coqc x.v && coqc test.v'
   '';
 
-  scripts.test-all.exec = ''
+  scripts.exercism-test.exec = ''
     ${pkgs.findutils}/bin/find -name '*.v' -not -name test.v -exec coqc {} +
     coqc test.v
   '';

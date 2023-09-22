@@ -8,7 +8,7 @@
     echo Run the tests with:
     echo 'mix test'
   '';
-  scripts.test-all.exec = "mix test";
+  scripts.exercism-test.exec = "mix test";
 
   languages.elixir.enable = true;
 }

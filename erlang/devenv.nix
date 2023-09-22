@@ -8,7 +8,7 @@
     echo Run the tests with:
     echo 'rebar3 eunit'
   '';
-  scripts.test-all.exec = "rebar3 eunit";
+  scripts.exercism-test.exec = "rebar3 eunit";
 
   languages.erlang.enable = true;
 

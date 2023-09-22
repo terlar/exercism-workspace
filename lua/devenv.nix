@@ -11,7 +11,7 @@
 
     export LUA_PATH="$LUA_PATH;?.lua"
   '';
-  scripts.test-all.exec = "busted *_spec.lua";
+  scripts.exercism-test.exec = "busted *_spec.lua";
 
   languages.lua.enable = true;
 

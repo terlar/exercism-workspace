@@ -8,7 +8,7 @@
     echo Run the tests with:
     echo 'ruby *_test.rb'
   '';
-  scripts.test-all.exec = "ruby *_test.rb";
+  scripts.exercism-test.exec = "ruby *_test.rb";
 
   languages.ruby.enable = true;
 

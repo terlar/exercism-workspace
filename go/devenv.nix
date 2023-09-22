@@ -10,7 +10,7 @@
 
     export GOPATH="$PWD"
   '';
-  scripts.test-all.exec = "go test";
+  scripts.exercism-test.exec = "go test";
 
   languages.go.enable = true;
 

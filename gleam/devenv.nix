@@ -8,7 +8,7 @@
     echo Run the tests with:
     echo 'gleam test'
   '';
-  scripts.test-all.exec = "gleam test";
+  scripts.exercism-test.exec = "gleam test";
 
   languages.gleam.enable = true;
 

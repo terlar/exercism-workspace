@@ -10,7 +10,7 @@
     echo 'bats *.bats'
   '';
 
-  scripts.test-all.exec = ''
+  scripts.exercism-test.exec = ''
     export BATS_RUN_SKIPPED=true
     ${pkgs.findutils}/bin/find \( -name '*.bats' -or -name '*_test.sh' \) -exec bats {} +
   '';

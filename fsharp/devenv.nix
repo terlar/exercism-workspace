@@ -8,7 +8,7 @@
     echo Run the tests with:
     echo 'dotnet test'
   '';
-  scripts.test-all.exec = "dotnet test";
+  scripts.exercism-test.exec = "dotnet test";
 
   # languages.dotnet.enable = true;
   packages = [
