@@ -1,42 +1,19 @@
-{
-  config,
-  inputs,
-  pkgs,
-  ...
-}: let
-  nodeModules = inputs.npm-buildpackage.legacyPackages.${pkgs.system}.mkNodeModules {
-    pname = "@exercism/javascript-node-modules";
-    version = "1.0.0";
-    src = ./.nix-support;
-  };
-in {
+{pkgs, ...}: {
   imports = [../common.nix];
 
   enterShell = ''
-    echo "node $(${config.languages.javascript.package}/bin/node --version)"
-    echo "npm $(${config.languages.javascript.package}/bin/npm --version)"
+    echo "bun $(bun --version)"
 
     echo
     echo Run the tests with:
-    echo 'npm test'
-
-    export PATH="$PATH:${nodeModules}/node_modules/.bin"
+    echo 'bun test'
   '';
-  scripts.exercism-test.exec = "npm test";
+  scripts.exercism-test.exec = "bun test";
 
   languages.javascript.enable = true;
 
-  scripts.npm.exec = ''
-    if [[ ! node_modules -ef "${nodeModules}/node_modules" ]]; then
-      echo Linking node_modules...
-      rm -rf node_modules
-      ln -s "${nodeModules}/node_modules"
-    fi
-
-    ${config.languages.javascript.package}/bin/npm "$@"
-  '';
-
   packages = [
+    pkgs.bun
     pkgs.nodePackages.typescript-language-server
   ];
 }
