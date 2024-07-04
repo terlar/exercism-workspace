@@ -11,7 +11,8 @@
   scripts.exercism-test.exec = "crystal spec";
 
   packages = [
-    pkgs.pcre
     pkgs.crystal
+    pkgs.icr
+    pkgs.pcre
   ];
 }
